@@ -1,0 +1,17 @@
+from datetime import datetime
+
+print('What is your name?')
+input_strg = input()
+print('Hello, ' + input_strg + '!')
+print('Enter your date of birth (mm/dd/yyyy):')
+dob_str = input()
+
+# Convert the input string to a datetime object
+dob = datetime.strptime(dob_str, '%m/%d/%Y')
+
+# Calculate the age
+current_date = datetime.now()
+age = current_date.year - dob.year - ((current_date.month, current_date.day) < (dob.month, dob.day))
+
+print('Your date of birth is ' + dob_str + '!')
+print('Your current age is ' + str(age) + '!')
