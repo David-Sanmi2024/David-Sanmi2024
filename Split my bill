@@ -1,0 +1,47 @@
+while True:
+  print("---Welcome to Split My Bill---")
+  print("What is the total bill? (Enter 'close' to exit)")
+
+  while True:
+      input_str = input()
+
+      # Check if the user wants to close the program
+      if input_str.lower() == 'close':
+          exit()
+
+      try:
+          bill_total = float(input_str)
+          break  # Break out of the inner loop if the input is a valid number
+      except ValueError:
+          print("Invalid input. Please enter a valid number for the total bill. Retry:")
+
+  # Get currency symbol based on user input or some other criteria
+  currency_symbols = ['£', '$', '€']
+
+  for symbol in currency_symbols:
+      input_str = input_str.replace(symbol, '')
+
+  # Format the bill_total as currency using f-string
+  print(f"Total bill: {'£'}{bill_total:.2f}")
+
+  print("How many people are splitting the bill?")
+  people = int(input())
+
+  print("Would you like to leave a tip?")
+  user_response = input().lower()
+
+  if user_response == 'yes':
+      print("How much would you like to tip?")
+      tip = int(input())
+      bill_total += tip
+      print(f"Total bill including tip: {'£'}{bill_total:.2f}")
+  elif user_response == 'no':
+      print(f"Total bill: {'£'}{bill_total:.2f}")
+  else:
+      print("Invalid response. Please enter 'yes' or 'no.'")
+
+  # Calculate the cost per person outside the loop
+  cost_per_person = bill_total / people
+
+  print(f"Total bill including tip is {'£'}{bill_total:.2f}")
+  print(f"Total cost per person is {'£'}{cost_per_person:.2f}")
